@@ -1,5 +1,5 @@
 .main {
-    background-color: rgb(129, 255, 129);
+    background-color: white;
 }
 
 .main-container {
@@ -10,7 +10,7 @@
     width: 80%;
     margin: 0 auto;
     height: 90vh;
-    background-color: rgb(129, 255, 129);
+    background-color: white;
 }
 
 .main-content {
