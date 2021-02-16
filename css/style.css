@@ -184,6 +184,8 @@
     background-color: black;
     color: white;
     margin-top: 1em;
+    margin-left: 2px;
+    margin-right: 2px;
     width: 8em;
     height: 2em;
     font-size: 1.3em;
@@ -200,6 +202,76 @@
 
 canvas{
     outline: 1px solid black;
+}
+
+#dino-game-container{
+    width: 600px;
+    height: 200px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+#dinoscore{
+    transform: translate(0, 150%)
+}
+
+#dino{
+    width: 50px;
+    height: 50px;
+    background-image: url(/img/dino.png);
+    background-size: 50px 50px;
+    position: relative;
+    top: 150px;
+}
+
+.jump{
+    animation: jump 0.3s linear;
+}
+
+@keyframes jump{
+    0%{
+        top: 150px;
+    }
+
+    30%{
+        top: 130px;
+    }
+
+    50%{
+        top: 80px;
+    }
+
+    80%{
+        top: 130px;
+    }
+    100%{
+        top: 150px;
+    }
+}
+
+#cactus {
+    width: 20px;
+    height: 40px;
+    position: relative;
+    top: 110px;
+    left: 580px;
+
+    background-image: url(/img/cactus.png);
+    background-size: 20px 40px;
+}
+
+.block{
+    animation: block 1s infinite linear;
+}
+
+@keyframes block {
+    0%{
+        left: 580px;
+    }
+
+    100%{
+        left: -10px;
+    }
 }
 
 @media screen and (max-width: 576px){

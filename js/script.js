@@ -259,6 +259,64 @@ function accelerate(n) {
 }
 // End of Flappy Bird Code
 
+//Start of Dino Game Code
+const dinoGame = '<div id="game-container"><h1>Dino Game</h1><br><h3 id="dinoscore">Start</h3><div id="dino-game-container"><div id="dino"></div><div id="cactus"></div></div><br><h2>Tap on any keys to play</h2></div>';
+function DinoGame(){
+
+    const dino = document.getElementById("dino");
+    const cactus = document.getElementById("cactus");
+    const dinoscore = document.getElementById("dinoscore");
+    var scoreCount = 0
+    var intervalId;
+    
+    function countScore(){
+        var countScoreInterval = setInterval(function(){
+            scoreCount += 1;
+            dinoscore.innerHTML = "score: " + scoreCount;
+        }, 100 );
+    
+        return countScoreInterval;
+    }
+    
+    function jump(){
+        if(dino.classList != "jump"){
+            dino.classList.add("jump");
+        
+            setTimeout(function(){
+                dino.classList.remove("jump");
+            }, 300)
+        }
+        if(cactus.classList != "block"){
+            dinoscore.innerHTML = "score: " + scoreCount;
+            isAlive;
+            cactus.classList.add("block");
+            intervalId = countScore();
+        }
+    }
+    
+    let isAlive = setInterval(() => {
+        //Get current dino Y value
+        let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
+    
+        //Get current cactus X value
+        let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"));
+    
+        //Check if it collide
+        if(cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140){
+            dinoscore.innerHTML = "Your score is : " + scoreCount;
+            cactus.classList.remove("block"); 
+            clearInterval(intervalId);
+            scoreCount = 0;
+        }
+    }, 10);
+    
+    document.addEventListener("keydown", function (event){
+        jump();
+    })
+}
+// End of Dino Game Code
+
+//Function to display the selected game
 function showGame(num){
     const main = document.getElementById('main');
     main.innerHTML = "";
@@ -266,6 +324,10 @@ function showGame(num){
     {
         main.innerHTML += ticTicToe;
         TicTacToe();
+    }
+    else if(num == 3){
+        main.innerHTML += dinoGame;
+        DinoGame();
     }
     else if (num == 5){
         main.innerHTML += flappyBird;
