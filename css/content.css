@@ -29,6 +29,46 @@
     font-size: 3.2rem;
 }
 
+.games-btn {
+    font-size: 2rem;
+    background-color: #95AFBA;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.35s;
+    outline: none;
+}
+
+.games-btn a {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-decoration: none;
+}
+
+.games-btn:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all 0.35s;
+    border-radius: 4px;
+    background: rgb(32, 109, 197);
+}
+
+.games-btn:hover {
+    color: white;
+}
+
+.games-btn:hover:after {
+    width: 100%;
+}
+
 .main-btn {
     font-size: 2rem;
     background-color: #95AFBA;
