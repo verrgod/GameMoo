@@ -130,7 +130,4 @@ function showGame(num){
         main.innerHTML += ticTicToe;
         TicTacToe();
     }
-    else if (num == 5){
-        
-    }
 }
