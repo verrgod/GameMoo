@@ -156,7 +156,7 @@
     cursor: pointer;
 }
 
-.game-container{
+#game-container{
     padding-top: 8em;
     text-align: center;
 }
@@ -196,6 +196,10 @@
     background-color: white;
     color: black;
     border: 1px solid black;
+}
+
+canvas{
+    outline: 1px solid black;
 }
 
 @media screen and (max-width: 576px){
