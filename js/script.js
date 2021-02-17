@@ -1,5 +1,6 @@
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-menu');
+const APIKEY = "602cef725ad3610fb5bb616f";
 
 menu.addEventListener('click',function() {
     menu.classList.toggle('is-active');
@@ -12,7 +13,7 @@ var path = window.location.pathname;
 var page = path.split("/").pop();
 if(page == "index.html"){
     const modal = document.getElementById('email-modal');
-    const openBtn = document.querySelector('.main-btn');
+    const openBtn = document.querySelector('#login');
     const closeBtn = document.querySelector('.close-btn');
 
     //Click event
@@ -29,6 +30,101 @@ if(page == "index.html"){
             modal.style.display = 'none';
         }
     })
+
+    $("#signup-btn").on("click", function (e) {
+        //prevent default action of the button 
+        e.preventDefault();
+
+        //Retrieve form data
+        let name = $("#name").val();
+        let password = $("#password").val();
+        let cfmpassword = $("#cfm-password").val();
+
+        //Validation
+        if(name == "" || password == "" || cfmpassword == ""){
+            alert("Please fill in all the fields");
+            return
+        }
+        if(password != cfmpassword){
+            alert("Password does not match");
+            return
+        }
+
+        //Get form values when user clicks on send
+        //Adapted from restdb api
+        let jsondata = {
+        "name": name,
+        "password": password
+        };
+
+        //Create our AJAX settings. Take note of API key
+        let settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://gamemoo-3814.restdb.io/rest/person",
+        "method": "POST", //use post to send info
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": APIKEY,
+            "cache-control": "no-cache"
+        },
+        "processData": false,
+        "data": JSON.stringify(jsondata),
+        error: function() {
+            alert("Name is taken, try other name");
+        }
+        }
+
+        // Send  ajax request over to the DB and print response of the RESTDB storage to console
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            modal.style.display = 'none';
+        });
+    });
+
+    $("#login-btn").on("click", function (e) {
+        //prevent default action of the button 
+        e.preventDefault();
+
+        //Retrieve form data
+        let name = $("#name").val();
+        let password = $("#password").val();
+        let cfmpassword = $("#cfm-password").val();
+
+        //Validation
+        if(name == "" || password == "" || cfmpassword == ""){
+            alert("Please fill in all the fields");
+            return
+        }
+        if(password != cfmpassword){
+            alert("Password does not match");
+            return
+        }
+
+        //Get form values when user clicks on send
+        //Adapted from restdb api
+        let jsondata = {
+        "name": name,
+        "password": password
+        };
+
+        //Create our AJAX settings. Take note of API key
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://gamemoo-3814.restdb.io/rest/person",
+            "method": "GET",
+            "headers": {
+              "content-type": "application/json",
+              "x-apikey": APIKEY,
+              "cache-control": "no-cache"
+            }
+          }
+          
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+          });
+    });
 }
 
 // Start of TicTacToe Code
@@ -528,44 +624,6 @@ function showGame(num){
         startGame();
     }
 }
-
-const APIKEY = "602cef725ad3610fb5bb616f";
-
-$("#submit").on("click", function (e) {
-    //prevent default action of the button 
-    e.preventDefault();
-
-    //Retrieve form data
-    let name = $("#name").val();
-    let password = $("#password").val();
-
-    //[STEP 3]: get form values when user clicks on send
-    //Adapted from restdb api
-    let jsondata = {
-      "name": name,
-      "password": password
-    };
-
-    //Create our AJAX settings. Take note of API key
-    let settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://gamemoo-3814.restdb.io/rest/person",
-      "method": "POST", //use post to send info
-      "headers": {
-        "content-type": "application/json",
-        "x-apikey": APIKEY,
-        "cache-control": "no-cache"
-      },
-      "processData": false,
-      "data": JSON.stringify(jsondata)
-    }
-
-    // Send  ajax request over to the DB and print response of the RESTDB storage to console
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
-});
 
 //Code to compare score (Descending)
 function compare( a, b ) {
