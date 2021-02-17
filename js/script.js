@@ -517,6 +517,7 @@ function showGame(num){
     else if(num == 3){
         main.innerHTML += dinoGame;
         DinoGame();
+        displayLeaderboard("dino");
     }
     else if(num == 4){
         main.innerHTML += breakout;
@@ -527,3 +528,88 @@ function showGame(num){
         startGame();
     }
 }
+
+const APIKEY = "602cef725ad3610fb5bb616f";
+
+$("#submit").on("click", function (e) {
+    //prevent default action of the button 
+    e.preventDefault();
+
+    //Retrieve form data
+    let name = $("#name").val();
+    let password = $("#password").val();
+
+    //[STEP 3]: get form values when user clicks on send
+    //Adapted from restdb api
+    let jsondata = {
+      "name": name,
+      "password": password
+    };
+
+    //Create our AJAX settings. Take note of API key
+    let settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://gamemoo-3814.restdb.io/rest/person",
+      "method": "POST", //use post to send info
+      "headers": {
+        "content-type": "application/json",
+        "x-apikey": APIKEY,
+        "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": JSON.stringify(jsondata)
+    }
+
+    // Send  ajax request over to the DB and print response of the RESTDB storage to console
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
+});
+
+//Code to compare score (Descending)
+function compare( a, b ) {
+    if ( a.score < b.score ){
+      return 1;
+    }
+    if ( a.score > b.score ){
+      return -1;
+    }
+    return 0;
+}
+
+function displayLeaderboard(game){
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://gamemoo-3814.restdb.io/rest/leaderboard",
+        "method": "GET",
+        "headers": {
+            "content-type": "application/json",
+            "x-apikey": APIKEY,
+            "cache-control": "no-cache"
+        },
+        error: function(xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    }
+  
+    $.ajax(settings).done(function (response) {
+        response.sort(compare);
+        console.log(response);
+
+        let content = "";
+        for (var i = 0; i < response.length; i++) {
+            if(response[i].game == game){
+                content = `${content}<tr><td>${i+1}</td>
+                <td>${response[i].name}</td>
+                <td>${response[i].score}</td></tr>`;
+            }
+        }
+
+        //Update HTML content
+        $("#table tbody").html(content);
+    });
+}
+
