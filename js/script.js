@@ -1,6 +1,8 @@
+// sessionStorage.clear();
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-menu');
 const APIKEY = "602cef725ad3610fb5bb616f";
+const leaderboard = document.getElementById("leaderboard-container");
 
 menu.addEventListener('click',function() {
     menu.classList.toggle('is-active');
@@ -15,7 +17,6 @@ const closeBtn = document.querySelector('.close-btn');
 var showModal = function(){
     modal.style.display = 'block';
 }
-
 openBtn.addEventListener('click', showModal);
 
 closeBtn.addEventListener('click', () => {
@@ -148,7 +149,7 @@ $("#login-btn").on("click", function (e) {
                 $("#login-btn").prop( "disabled", false);
                 modal.style.display = 'none';
 
-                sessionStorage.setItem("currentuser",response.name);
+                sessionStorage.setItem("currentuser",name);
                 return;
             }
         }
@@ -257,7 +258,7 @@ const flappyBird = '<div id="game-container"><h1>Flappy Bird</h1><br><br><br><br
 var myGamePiece;
 var myObstacles = [];
 var myScore;
-var flappyBirdScore
+var gameOver = false;
 
 function startGame() {
     myGamePiece = new component(30, 30, "#95AFBA", 10, 120);
@@ -267,6 +268,7 @@ function startGame() {
 }
 
 function restartGame() {
+    gameOver = false;
     myGamePiece = {};
     myScore = {};
     clearInterval(myGameArea.interval)
@@ -349,7 +351,10 @@ function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
-            flappyBirdScore = myGameArea.frameNo;
+            if(gameOver == false){
+                updateLeaderBoard("flappybird", myGameArea.frameNo)
+                gameOver = true;
+            }
             return;
         } 
     }
@@ -431,6 +436,7 @@ function DinoGame(){
         //Check if it collide
         if(cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140){
             dinoscore.innerHTML = "Your score is : " + scoreCount;
+            updateLeaderBoard("dino", scoreCount);
             cactus.classList.remove("block"); 
             clearInterval(intervalId);
             scoreCount = 0;
@@ -456,6 +462,7 @@ function Breakout(){
     let rotation;
     let gameOverText;
     let wonTheGameText;
+    var end = false;
     
     let score = 0;
     let lives = 3;
@@ -599,8 +606,11 @@ function Breakout(){
     
                 if (bricks.countActive() === 0) {
                     ball.destroy();
-    
                     wonTheGameText.setVisible(true);
+                    if(end == false){
+                        updateLeaderBoard("breakout", score);
+                        end = true;
+                    }
                 }
             }
         });
@@ -621,10 +631,14 @@ function Breakout(){
         for (index = element.length - 1; index >= 0; index--) {
             element[index].parentNode.removeChild(element[index]);
         }
+        end = false;
         game = new Phaser.Game(config);
         score = 0;
         lives = 4;
         rotation = "";
+    }
+    if(end){
+        updateLeaderBoard("breakout", score);
     }
 }
 //End of Breakout Code
@@ -649,10 +663,12 @@ function showGame(num){
     else if(num == 4){
         main.innerHTML += breakout;
         Breakout();
+        displayLeaderboard("breakout");
     }
     else if (num == 5){
         main.innerHTML += flappyBird;
         startGame();
+        displayLeaderboard("flappybird");
     }
 }
 
@@ -667,7 +683,82 @@ function compare( a, b ) {
     return 0;
 }
 
+function updateLeaderBoard(game, score){
+    let username = sessionStorage.getItem('currentuser');
+    if(username == null){
+        return
+    }
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://gamemoo-3814.restdb.io/rest/leaderboard",
+        "method": "GET",
+        "headers": {
+          "content-type": "application/json",
+          "x-apikey": APIKEY,
+          "cache-control": "no-cache"
+        }
+    }
+      
+    $.ajax(settings).done(function (response) {
+        var check = false;
+        for (var i = 0; i < response.length; i++) {
+            if(response[i].name == username && response[i].game == game){
+                check = true;
+                if(response[i].score >= score){
+                    return;
+                }
+                var objectID = response[i]._id;
+                var jsondata = {"game": game,"name": username,"score": score};                
+                var settings2 = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://gamemoo-3814.restdb.io/rest/leaderboard/" + objectID,
+                "method": "PUT",
+                "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": APIKEY,
+                    "cache-control": "no-cache"
+                },
+                "processData": false,
+                "data": JSON.stringify(jsondata)
+                }
+
+                $.ajax(settings2).done(function (response2) {
+                    leaderboard.innerHTML = "";
+                    displayLeaderboard(game);
+                });
+            }
+        }
+        if(check == false){
+            var jsondata = {"game": game,"name": username,"score": score};             
+            var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://gamemoo-3814.restdb.io/rest/leaderboard",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": APIKEY,
+                "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(jsondata)
+            }
+
+            $.ajax(settings).done(function (response) {
+                leaderboard.innerHTML = "";
+                displayLeaderboard(game);
+            });
+        }
+      });
+}
+
+//Function to display leaderboard
 function displayLeaderboard(game){
+    const leaderboard = '<h2>Leaderboard</h2><table id="table"><thead><th style="background-color: #95AFBA;">Rank</th><th style="background-color: #b7d5e2;">Name</th><th style="background-color: #95AFBA;">Score</th></thead><tbody></tbody></table>';
+    document.getElementById("leaderboard-container").innerHTML += leaderboard; 
+    document.getElementsByTagName("body").innerHTML += leaderboard;
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -677,10 +768,6 @@ function displayLeaderboard(game){
             "content-type": "application/json",
             "x-apikey": APIKEY,
             "cache-control": "no-cache"
-        },
-        error: function(xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
         }
     }
   
@@ -689,11 +776,13 @@ function displayLeaderboard(game){
         console.log(response);
 
         let content = "";
+        var rank = 1;
         for (var i = 0; i < response.length; i++) {
             if(response[i].game == game){
-                content = `${content}<tr><td>${i+1}</td>
+                content = `${content}<tr><td>${rank}</td>
                 <td>${response[i].name}</td>
                 <td>${response[i].score}</td></tr>`;
+                rank++;
             }
         }
 
