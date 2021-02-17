@@ -7,7 +7,6 @@ menu.addEventListener('click',function() {
     menuLinks.classList.toggle('active');
 })
 
-
 //Check page name
 var path = window.location.pathname;
 var page = path.split("/").pop();
