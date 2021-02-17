@@ -8,7 +8,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
         <title>My Page</title>
     </head>
-
     <body>
         <div class="nav-container">
             <nav class="navbar">
@@ -25,6 +24,31 @@
                     <li><a href="#" id="login" class="nav-links">Login</a></li>
                 </ul>
             </nav>
+        </div>
+        <div class="modal" id="email-modal">
+          <div class="modal-content">
+              <span class="close-btn">&times;</span>
+              <div class="modal-content-left">
+                  <img id="modal-img" src="img/account.svg" alt="">
+              </div>
+              <div class="modal-content-right">
+                  <form action="/" method="GET" class="modal-form" id="form">
+                      <h1>Sign Up</h1>
+                      <div class="form-validation">
+                          <input type="text" class="modal-input" id="name" name="name" placeholder="Enter your username">
+                          <p>Name is taken</p>    
+                      </div>
+                      <div class="form-validation">
+                          <input type="password" class="modal-input" id="password" name="password" placeholder="Enter your password">
+                      </div>
+                      <div class="form-validation">
+                          <input type="password" class="modal-input" id="cfm-password" name="password" placeholder="Confirm your password">
+                          <p>Error Message</p>    
+                      </div>
+                      <input type="submit" id="login-btn" class="modal-input-btn" value="Sign Up">
+                  </form>
+              </div>
+          </div>
         </div>
         <div class="main" id="main">
           <div class="flex-container">

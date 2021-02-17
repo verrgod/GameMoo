@@ -7,124 +7,156 @@ menu.addEventListener('click',function() {
     menuLinks.classList.toggle('active');
 })
 
-//Check page name
-var path = window.location.pathname;
-var page = path.split("/").pop();
-if(page == "index.html"){
-    const modal = document.getElementById('email-modal');
-    const openBtn = document.querySelector('#login');
-    const closeBtn = document.querySelector('.close-btn');
+const modal = document.getElementById('email-modal');
+const openBtn = document.querySelector('#login');
+const closeBtn = document.querySelector('.close-btn');
 
-    //Click event
-    openBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+//Click event
+var showModal = function(){
+    modal.style.display = 'block';
+}
 
-    closeBtn.addEventListener('click', () => {
+openBtn.addEventListener('click', showModal);
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+})
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal){
         modal.style.display = 'none';
-    })
+    }
+})
 
-    window.addEventListener('click', (e) => {
-        if (e.target === modal){
-            modal.style.display = 'none';
-        }
-    })
+//Sign up code
+$("#signup-btn").on("click", function (e) {
+    //prevent default action of the button 
+    e.preventDefault();
 
-    $("#signup-btn").on("click", function (e) {
-        //prevent default action of the button 
-        e.preventDefault();
+    //Retrieve form data
+    let name = $("#name").val();
+    let password = $("#password").val();
+    let cfmpassword = $("#cfm-password").val();
 
-        //Retrieve form data
-        let name = $("#name").val();
-        let password = $("#password").val();
-        let cfmpassword = $("#cfm-password").val();
+    //Validation
+    if(name == "" || password == "" || cfmpassword == ""){
+        alert("Please fill in all the fields");
+        return
+    }
+    if(password != cfmpassword){
+        alert("Password does not match");
+        return
+    }
 
-        //Validation
-        if(name == "" || password == "" || cfmpassword == ""){
-            alert("Please fill in all the fields");
-            return
-        }
-        if(password != cfmpassword){
-            alert("Password does not match");
-            return
-        }
+    //Get form values when user clicks on send
+    //Adapted from restdb api
+    let jsondata = {
+    "name": name,
+    "password": password
+    };
 
-        //Get form values when user clicks on send
-        //Adapted from restdb api
-        let jsondata = {
-        "name": name,
-        "password": password
-        };
+    //Create our AJAX settings. Take note of API key
+    let settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://gamemoo-3814.restdb.io/rest/person",
+    "method": "POST", //use post to send info
+    "headers": {
+        "content-type": "application/json",
+        "x-apikey": APIKEY,
+        "cache-control": "no-cache"
+    },
+    "processData": false,
+    "data": JSON.stringify(jsondata),
+    "beforeSend": function(){
+        //disable our button
+        $("#signup-btn").prop( "disabled", true);
+        //clear our form using the form id and triggering it's reset feature
+        $("#add-contact-form").trigger("reset");
+    },
+    error: function() {
+        alert("Name is taken, try other name");
+    }
+    }
 
-        //Create our AJAX settings. Take note of API key
-        let settings = {
+    // Send  ajax request over to the DB and print response of the RESTDB storage to console
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        $("#login").html(response.name);
+        openBtn.removeEventListener('click', showModal)
+        $("#name").val("");
+        $("#password").val("");
+        $("#cfm-password").val("");
+        $("#signup-btn").prop( "disabled", false);
+        modal.style.display = 'none';
+
+        sessionStorage.setItem("currentuser",response.name);
+    });
+});
+
+//Login code
+$("#login-btn").on("click", function (e) {
+    //prevent default action of the button 
+    e.preventDefault();
+
+    //Retrieve form data
+    let name = $("#name").val();
+    let password = $("#password").val();
+
+    //Validation
+    if(name == "" || password == ""){
+        alert("Please fill in all the fields");
+        return
+    }
+
+    //Get form values when user clicks on send
+    //Adapted from restdb api
+    let jsondata = {
+    "name": name,
+    "password": password
+    };
+
+    //Create our AJAX settings. Take note of API key
+    var settings = {
         "async": true,
         "crossDomain": true,
         "url": "https://gamemoo-3814.restdb.io/rest/person",
-        "method": "POST", //use post to send info
+        "method": "GET",
         "headers": {
             "content-type": "application/json",
             "x-apikey": APIKEY,
             "cache-control": "no-cache"
         },
-        "processData": false,
-        "data": JSON.stringify(jsondata),
-        error: function() {
-            alert("Name is taken, try other name");
+        "beforeSend": function(){
+            //disable our button
+            $("#login-btn").prop( "disabled", true);
+            //clear our form using the form id and triggering it's reset feature
+            $("#add-contact-form").trigger("reset");
         }
         }
-
-        // Send  ajax request over to the DB and print response of the RESTDB storage to console
+        
         $.ajax(settings).done(function (response) {
-            console.log(response);
-            modal.style.display = 'none';
-        });
-    });
+        console.log(response);
 
-    $("#login-btn").on("click", function (e) {
-        //prevent default action of the button 
-        e.preventDefault();
+        for (var i = 0; i < response.length; i++) {
+            if(response[i].name == name && response[i].password == password){
+                $("#login").html(name);
+                openBtn.removeEventListener('click', showModal)
+                alert("Logged in");
+                $("#name").val("")
+                $("#password").val("")
+                $("#login-btn").prop( "disabled", false);
+                modal.style.display = 'none';
 
-        //Retrieve form data
-        let name = $("#name").val();
-        let password = $("#password").val();
-        let cfmpassword = $("#cfm-password").val();
-
-        //Validation
-        if(name == "" || password == "" || cfmpassword == ""){
-            alert("Please fill in all the fields");
-            return
-        }
-        if(password != cfmpassword){
-            alert("Password does not match");
-            return
-        }
-
-        //Get form values when user clicks on send
-        //Adapted from restdb api
-        let jsondata = {
-        "name": name,
-        "password": password
-        };
-
-        //Create our AJAX settings. Take note of API key
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://gamemoo-3814.restdb.io/rest/person",
-            "method": "GET",
-            "headers": {
-              "content-type": "application/json",
-              "x-apikey": APIKEY,
-              "cache-control": "no-cache"
+                sessionStorage.setItem("currentuser",response.name);
+                return;
             }
-          }
-          
-          $.ajax(settings).done(function (response) {
-            console.log(response);
-          });
+        }
+        $("#name").val("")
+        $("#password").val("")
+        alert("Invalid username or password");
     });
-}
+});
 
 // Start of TicTacToe Code
 const ticTicToe = '<div id="game-container"><h1>Tic Tac Toe</h1><div class="game--container"><div data-cell-index="0" class="cell"></div><div data-cell-index="1" class="cell"></div><div data-cell-index="2" class="cell"></div><div data-cell-index="3" class="cell"></div><div data-cell-index="4" class="cell"></div><div data-cell-index="5" class="cell"></div><div data-cell-index="6" class="cell"></div><div data-cell-index="7" class="cell"></div><div data-cell-index="8" class="cell"></div></div><h2 class="game--status"></h2><button class="game--restart">Restart Game</button></div>';
