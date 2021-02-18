@@ -1,8 +1,8 @@
-sessionStorage.clear(); //Clear current user session storage
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-menu');
 const APIKEY = "602cef725ad3610fb5bb616f";
 const leaderboard = document.getElementById("leaderboard-container");
+var loggedIn = false;
 
 menu.addEventListener('click',function() {
     menu.classList.toggle('is-active');
@@ -10,15 +10,22 @@ menu.addEventListener('click',function() {
 })
 
 const modal = document.getElementById('email-modal');
-const openBtn = document.querySelector('#login');
+const openBtn = document.getElementById('login');
 const closeBtn = document.querySelector('.close-btn');
 
 //Click event
 var showModal = function(){
-    modal.style.display = 'block';
+    if(loggedIn == true){
+        openBtn.classList.remove("login");
+        document.getElementById("username-span").innerHTML = "Login";
+        sessionStorage.clear();
+        loggedIn = false
+    }
+    else{
+        modal.style.display = 'block';
+    }
 }
 openBtn.addEventListener('click', showModal);
-
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 })
@@ -28,6 +35,13 @@ window.addEventListener('click', (e) => {
         modal.style.display = 'none';
     }
 })
+
+var currentUser = sessionStorage.getItem('currentuser');
+if(currentUser != null){
+    loggedIn = true;
+    openBtn.classList.add("login");
+    document.getElementById("username-span").innerHTML = currentUser;
+}
 
 //Sign up code
 $("#signup-btn").on("click", function (e) {
@@ -83,14 +97,14 @@ $("#signup-btn").on("click", function (e) {
     // Send  ajax request over to the DB and print response of the RESTDB storage to console
     $.ajax(settings).done(function (response) {
         console.log(response);
-        $("#login").html(response.name);
-        openBtn.removeEventListener('click', showModal)
+        openBtn.classList.add("login");
+        document.getElementById("username-span").innerHTML = response.name;
         $("#name").val("");
         $("#password").val("");
         $("#cfm-password").val("");
         $("#signup-btn").prop( "disabled", false);
         modal.style.display = 'none';
-
+        loggedIn = true;
         sessionStorage.setItem("currentuser",response.name);
     });
 });
@@ -141,14 +155,14 @@ $("#login-btn").on("click", function (e) {
 
         for (var i = 0; i < response.length; i++) {
             if(response[i].name == name && response[i].password == password){
-                $("#login").html(name);
-                openBtn.removeEventListener('click', showModal)
-                alert("Logged in");
+                document.getElementById("username-span").innerHTML = name;
+                openBtn.classList.add("login");
+                // alert("Logged in");
                 $("#name").val("")
                 $("#password").val("")
                 $("#login-btn").prop( "disabled", false);
                 modal.style.display = 'none';
-
+                loggedIn = true;
                 sessionStorage.setItem("currentuser",name);
                 return;
             }

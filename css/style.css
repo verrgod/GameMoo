@@ -10,6 +10,18 @@
     font-family: 'Lilita One', cursive;
 }
 
+#logout-span{
+    display: none;
+}
+
+.login:hover #username-span{
+    display: none;
+}
+
+.login:hover #logout-span{
+    display: block;
+}
+
 .nav-container{
     width: 100%;
     background-color: white;
