@@ -61,23 +61,23 @@
   * Try playing again with a lower score and verify that the score in the leaderboard is shown lower down, scores are sorted from largest to smallest
  (This quiz does not link to the main pages account since this is a small game that has only a fixed number of questions)
  
- ## Credits 
+## Credits 
  
- ### Media
+### Media
  
  * Images were gotten from undraw.co
 
- ### Acknowledgments
+### Acknowledgments
  
  * I (Vernon) received inspiration for this project from Brain Design
  
- ### Contribution
+### Contribution
  
- * Vernon 
+* Vernon 
   * front-end development (HTML files - mobile menu, modal pop up form) 
   * trivia quiz (localstorage leaderboard)
 
- * Marcus
+* Marcus
   * API development 
   * Account management, leaderboard database from restdb.io
   * Javascript for other games
