@@ -1,4 +1,4 @@
-// sessionStorage.clear();
+sessionStorage.clear(); //Clear current user session storage
 const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-menu');
 const APIKEY = "602cef725ad3610fb5bb616f";
@@ -643,6 +643,114 @@ function Breakout(){
 }
 //End of Breakout Code
 
+//Start of Circle Click Game Code
+const circleClick = '<div id="game-container"><div id="content-box"><h1>Click the circles</h1></div><div class="HUD"><div id="score">0</div><div id="timer">30 <small>sec(s)</small></div><div id="playbox" onclick="playCircleGame(); this.style.display = ' + "'none'" + ';document.getElementById(' + "'content-box'" + ').style.display = ' + "'none'" + ';"><a href="#" class="play">Play!</a></div></div><div id="circle-click-container"><div id="circle-click"></div></div></div>';
+window.Game = new CircleGame();
+
+var clicked = false;
+
+function CircleGame() {
+    this.score = 0;
+    this.timer = 30;
+    this.duration = 0;
+    this.initialCircleDuration = 1250; //1.5 seconds
+    this.scrX = 800;
+    this.scrY = 600;
+}
+
+function playCircleGame() {
+    window.Game = new CircleGame();
+    updateScore();
+    updateTimer();
+    nextCircle();
+    var loop = setInterval(function() {
+        if(!isGameOver()) {
+            Game.timer--;
+            Game.duration++;
+            updateTimer();
+        } else {
+            clearInterval(loop);
+            document.getElementById('playbox').innerHTML = "<a href=\"#\" class=\"play\">Play Again?</a>";
+            document.getElementById('playbox').style.display = "block";
+            updateLeaderBoard("circle", Game.score);
+        }
+    }, 1000);
+}
+
+function updateTimer() {
+    var timerbox = document.getElementById('timer');
+    timerbox.innerHTML = Game.timer + " <small>s</small>";
+    if(Game.timer <= 10)
+        timerbox.style.color = "#993300";
+    else if(Game.timer <= 20)
+        timerbox.style.color = "#ffd700";
+    else
+        timerbox.style.color = "#00aa00"
+}
+
+function updateScore() {
+    document.getElementById('score').innerHTML = "score: " + Game.score;
+}
+
+function randBtwn(min,max) {
+    return Math.floor(Math.random() * max) + min;
+}
+
+function addScore(val) {
+    Game.score+=val;
+    var scorebox = document.getElementById('score');
+    updateScore();
+}
+
+function addTime(val) {
+    Game.timer+=val;
+    var timerbox = document.getElementById('timer');
+    updateTimer();
+    timerbox.style.background = "#00aa00";
+    setTimeout(function() {timerbox.style.background="#ccc";},100);
+}
+
+function isGameOver() {
+    return Game.timer <= 0;
+}
+
+function nextCircle() {
+    genScoreCircle();
+}
+
+function genScoreCircle() {
+    var circle = genCircle(true);
+    circle.style.background = "#3F7CAC";
+    var gameContainer = document.getElementById("circle-click").getBoundingClientRect();
+    var score = [50,45,40,35,30,25,20,15,10,5][parseInt(circle.style.width)-1];
+    circle.innerHTML = score;
+    circle.setAttribute('onclick',"if(!isGameOver()) {clicked = true;addScore("+score+");document.getElementById('circle-click').removeChild(this); nextCircle();}");
+    document.getElementById("circle-click").appendChild(circle);
+    circle.style.top = randBtwn(0, Game.scrY - 160) + "px";
+    circle.style.left = randBtwn(0, Game.scrX - 160) +"px";
+}
+
+function genCircle(duplicate) {
+    var circle = document.createElement("div");
+    circle.style.width = randBtwn(1,10) + 'em';
+    circle.style.height = circle.style.width;
+    var diameter = parseInt(circle.style.width);
+    circle.style.lineHeight = diameter + "em";
+    circle.setAttribute('class','circle');
+        setTimeout(function() {
+            if(clicked == false){
+                document.getElementById("circle-click").removeChild(circle); 
+                if(!isGameOver() && duplicate) 
+                    nextCircle();
+            }
+            else{
+                clicked = false;
+            }
+        }, Game.initialCircleDuration - ((8*Game.duration > 1000) ? 1000:(8*Game.duration)));
+    return circle;
+}
+//End of Circle Click Game Code
+
 //Function to display the selected game
 function showGame(num){
     const main = document.getElementById('main');
@@ -653,7 +761,8 @@ function showGame(num){
         TicTacToe();
     }
     else if(num == 2){
-        //circle click game
+        main.innerHTML += circleClick;
+        displayLeaderboard("circle");
     }
     else if(num == 3){
         main.innerHTML += dinoGame;

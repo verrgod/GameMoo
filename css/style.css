@@ -160,6 +160,7 @@
     padding-top: 8em;
     padding-bottom: 5em;
     text-align: center;
+    margin: 0 auto;
 }
 
 .game--container {
@@ -247,6 +248,72 @@ canvas{
     outline: 1px solid black;
 }
 
+#circle-click-container{
+    display: flex;
+    justify-content: center;
+}
+
+#circle-click{
+    width: 800px;
+    height: 600px;
+    border: 1px solid black;
+}
+
+.circle {
+	margin: 0;
+	color: #fff;
+	font-family: arial;
+	font-size:14px;
+	font-weight:bold;
+	text-shadow: 1px 1px #000;
+	line-height: 10em;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 5em;
+	border: 1px solid #000;
+	width: 160px;
+	height: 160px;
+	background-color: #000;
+    user-select: none;
+    cursor: pointer;
+}
+
+.play {
+	font-family: arial;
+	font-size: 34px;
+	font-weight: bold;
+    color: #00aa00;
+}
+
+.play:hover {
+    color: #007000;
+}
+
+.HUD {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#timer {
+	width: 250px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	font-size: 2em;
+}
+
+#score {
+	width: 500px;
+	margin: 0 auto;
+	font-size: 3em;
+}
+
+#content-box {
+	margin: 0 auto;
+	width:500px;
+}
+
+/* Responsive CSS */
 @keyframes jump{
     0%{
         top: 150px;
