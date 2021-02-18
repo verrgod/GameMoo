@@ -6,7 +6,7 @@
 
 ## Design Process
 
-### This website was tailored to users of all walks of life, and having a main goal of allowing users to be competitive to be placed in the leaderboards. 
+### This website was tailored to users of all walks of life, particularly those who love to play games / are competitive in nature and having a main goal of allowing users to be competitive to be placed in the leaderboards. 
 
 * As a player, I want to create an account to save my scores.
 * As a player, I want to play games on my account and have them saved on the leaderboards.
