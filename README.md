@@ -2,7 +2,7 @@
 
 ![GameMoo Logo](img/logo.png)
 
-### GameMoo is a minigame website; a place for users to play games and to show the world their skills by creating an acconut and saving it in the leaderboards. GameMoo uses restdb.io for keeping track of account details, leaderboards and localstorage for the quiz leaderboard.
+### GameMoo is a minigame website; a place for users to play games and to show the world their skills by setting highscores on minigames. Users can create an acconut and save their scores on the leaderboards. GameMoo uses restdb.io for keeping track of account details, leaderboards and localstorage for the quiz leaderboard.
 
 ## Design Process
 
