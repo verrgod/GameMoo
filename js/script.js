@@ -484,7 +484,7 @@ function DinoGame(){
 // End of Dino Game Code
 
 //Start of Breakout Code
-const breakout = '<div id="game-container"><h1>Tic Tac Toe</h1><br></div>';
+const breakout = '<div id="game-container"><h1>Breakout</h1><br></div>';
 
 function Breakout(){
     let ball;
