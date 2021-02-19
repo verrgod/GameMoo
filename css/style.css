@@ -382,7 +382,6 @@ canvas{
     .nav-menu{
         display: grid;
         grid-template-columns: auto;
-        background: red;
         margin: 0;
         width: 92%;
         position: absolute;
