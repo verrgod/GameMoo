@@ -235,7 +235,7 @@ canvas{
 #dino{
     width: 50px;
     height: 50px;
-    background-image: url(/img/dino.png);
+    background-image: url(../img/dino.png);
     background-size: 50px 50px;
     position: relative;
     top: 150px;
@@ -243,6 +243,42 @@ canvas{
 
 .jump{
     animation: jump 0.3s linear;
+}
+
+@keyframes jump{
+    0%{
+        top: 150px;
+    }
+
+    30%{
+        top: 130px;
+    }
+
+    50%{
+        top: 80px;
+    }
+
+    80%{
+        top: 130px;
+    }
+    100%{
+        top: 150px;
+    }
+}
+
+#cactus {
+    width: 20px;
+    height: 40px;
+    position: relative;
+    top: 110px;
+    left: 580px;
+
+    background-image: url(../img/cactus.png);
+    background-size: 20px 40px;
+}
+
+.block{
+    animation: block 1s infinite linear;
 }
 
 #leaderboard-container{
@@ -328,41 +364,6 @@ canvas{
 	width:500px;
 }
 
-@keyframes jump{
-    0%{
-        top: 150px;
-    }
-
-    30%{
-        top: 130px;
-    }
-
-    50%{
-        top: 80px;
-    }
-
-    80%{
-        top: 130px;
-    }
-    100%{
-        top: 150px;
-    }
-}
-
-#cactus {
-    width: 20px;
-    height: 40px;
-    position: relative;
-    top: 110px;
-    left: 580px;
-
-    background-image: url(/img/cactus.png);
-    background-size: 20px 40px;
-}
-
-.block{
-    animation: block 1s infinite linear;
-}
 
 @keyframes block {
     0%{
