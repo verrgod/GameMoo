@@ -42,7 +42,7 @@
 * Dino Game, also known as T-Rex Game and Dino Runner, a replica of the in-built browser game in google chrome. It is being played by pressing the space bar for the dino to jump over the obstacles.
   * Source of code **[https://www.youtube.com/watch?v=i7nIutSLvdU](https://www.youtube.com/watch?v=i7nIutSLvdU)**
   
-### Dino Game
+### Breakout Game
 * Breakout, an arcade game where player knocks down as many bricks as possible with the ball by using the paddle and wall. If the player's paddle misses the ball's rebound, they will lose a live. ("Breakout (video game)", n.d.)
   * Source of code **[https://github.com/flowforfrank/breakout](https://github.com/flowforfrank/breakout)**
   
