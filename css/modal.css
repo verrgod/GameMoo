@@ -76,6 +76,11 @@
     margin-bottom: 1rem;
 }
 
+.modal-form a{
+    cursor: pointer;
+    color: #ac3f79;
+}
+
 .form-validation{
     margin-bottom: 0.5rem;
     width: 80%;

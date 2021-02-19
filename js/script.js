@@ -2,8 +2,8 @@ const menu = document.querySelector('#mobile-menu');
 const menuLinks = document.querySelector('.nav-menu');
 const APIKEY = "602cef725ad3610fb5bb616f";
 const leaderboard = document.getElementById("leaderboard-container");
-var loggedIn = false;
 
+var loggedIn = false;
 menu.addEventListener('click',function() {
     menu.classList.toggle('is-active');
     menuLinks.classList.toggle('active');
@@ -12,6 +12,7 @@ menu.addEventListener('click',function() {
 const modal = document.getElementById('email-modal');
 const openBtn = document.getElementById('login');
 const closeBtn = document.querySelector('.close-btn');
+const closeBtn2 = document.querySelector('#close-btn2');
 
 //Click event
 var showModal = function(){
@@ -29,6 +30,9 @@ openBtn.addEventListener('click', showModal);
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 })
+closeBtn2.addEventListener('click', () => {
+    modal.style.display = 'none';
+})
 
 window.addEventListener('click', (e) => {
     if (e.target === modal){
@@ -43,15 +47,29 @@ if(currentUser != null){
     document.getElementById("username-span").innerHTML = currentUser;
 }
 
+function toggleLogin(opt){
+    const signup = document.getElementById("signup-form");
+    const login = document.getElementById("login-form");
+
+    if(opt == 1){
+        signup.style.display = "grid";
+        login.style.display = "none";
+    }
+    else{
+        login.style.display = "grid";
+        signup.style.display = "none";
+    }
+}
+
 //Sign up code
 $("#signup-btn").on("click", function (e) {
     //prevent default action of the button 
     e.preventDefault();
 
     //Retrieve form data
-    let name = $("#name").val();
-    let password = $("#password").val();
-    let cfmpassword = $("#cfm-password").val();
+    let name = $("#new-name").val();
+    let password = $("#new-password").val();
+    let cfmpassword = $("#new-cfm-password").val();
 
     //Validation
     if(name == "" || password == "" || cfmpassword == ""){
@@ -90,12 +108,14 @@ $("#signup-btn").on("click", function (e) {
         $("#add-contact-form").trigger("reset");
     },
     error: function() {
+        $("#signup-btn").prop( "disabled", false);
         alert("Name is taken, try other name");
     }
     }
 
     // Send  ajax request over to the DB and print response of the RESTDB storage to console
     $.ajax(settings).done(function (response) {
+        toggleLogin(2);
         console.log(response);
         openBtn.classList.add("login");
         document.getElementById("username-span").innerHTML = response.name;
@@ -154,7 +174,7 @@ $("#login-btn").on("click", function (e) {
         console.log(response);
 
         for (var i = 0; i < response.length; i++) {
-            if(response[i].name == name && response[i].password == password){
+            if(response[i].name.toUpperCase() == name.toUpperCase() && response[i].password == password){
                 document.getElementById("username-span").innerHTML = name;
                 openBtn.classList.add("login");
                 // alert("Logged in");

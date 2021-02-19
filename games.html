@@ -26,28 +26,50 @@
             </nav>
         </div>
         <div class="modal" id="email-modal">
-          <div class="modal-content">
+          <div id="login-form" class="modal-content">
               <span class="close-btn">&times;</span>
               <div class="modal-content-left">
                   <img id="modal-img" src="img/account.svg" alt="">
               </div>
               <div class="modal-content-right">
-                  <form action="/" method="GET" class="modal-form" id="form">
-                      <h1>Sign up to save your scores!</h1>
+                  <form action="/" method="GET" class="modal-form">
+                      <h1>Login to save your scores!</h1>
                       <div class="form-validation">
-                          <input type="text" class="modal-input" id="name" name="name" placeholder="Enter your username">
+                          <input type="text" class="modal-input" id="name" name="name" placeholder="Enter your username">  
                       </div>
                       <div class="form-validation">
                           <input type="password" class="modal-input" id="password" name="password" placeholder="Enter your password">
                       </div>
-                      <div class="form-validation">
-                          <input type="password" class="modal-input" id="cfm-password" name="password" placeholder="Confirm your password">  
-                      </div>
-                      <input type="submit" id="login-btn" class="modal-input-btn" value="Sign Up">
+                      <input type="submit" id="login-btn" class="modal-input-btn" value="Login">
+                      <br>
+                      <span>Don't have an acount? <a onclick="toggleLogin(1)">Sign up</a></span>
                   </form>
               </div>
           </div>
-        </div>
+          <div id="signup-form" class="modal-content">
+              <span id="close-btn2" class="close-btn">&times;</span>
+              <div class="modal-content-left">
+                  <img id="modal-img" src="img/account.svg" alt="">
+              </div>
+              <div class="modal-content-right">
+                  <form action="/" method="GET" class="modal-form">
+                      <h1>Sign up to save your scores!</h1>
+                      <div class="form-validation">
+                          <input type="text" class="modal-input" id="new-name" name="new-name" placeholder="Enter your username">  
+                      </div>
+                      <div class="form-validation">
+                          <input type="password" class="modal-input" id="new-password" name="new-password" placeholder="Enter your password">
+                      </div>
+                      <div class="form-validation">
+                          <input type="password" class="modal-input" id="new-cfm-password" name="new-cfm-password" placeholder="Confirm your password"> 
+                      </div>
+                      <input type="submit" id="signup-btn" class="modal-input-btn" value="Sign Up">
+                      <br>
+                      <span>Have an account? <a onclick="toggleLogin(2)">Login</a></span>
+                  </form>
+              </div>
+          </div>
+      </div>
         <div class="main" id="main">
           <div class="flex-container">
             <div class="flex-items">

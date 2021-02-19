@@ -22,6 +22,10 @@
     display: block;
 }
 
+#signup-form{
+    display: none;
+}
+
 .nav-container{
     width: 100%;
     background-color: white;
