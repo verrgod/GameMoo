@@ -50,6 +50,10 @@
 * Flappy Bird is an arcade-style game in which the player controls the bird, which moves persistently to the right. The player is tasked with navigating it through pairs of pipes that have equally sized gaps placed at random heights. Faby automatically descends and only ascends when the player press the Fly button.Colliding with a pipe ends the gameplay. ("Flappy Bird", n.d.)
   * Source of code **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity](https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity)**
 
+### Quiz
+* A simple and short 4 question game to test the player's knowledge on video games.
+  * Source of code **[https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2587s](https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2587s)**
+
 ## Technologies used 
 
 ### This project uses
@@ -96,6 +100,7 @@
 * **[https://www.youtube.com/watch?v=i7nIutSLvdU](https://www.youtube.com/watch?v=i7nIutSLvdU)**
 * **[https://github.com/flowforfrank/breakout](https://github.com/flowforfrank/breakout)**
 * **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity](https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity)**
+* **[https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2587s](https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2587s)**
  
 ### Media
  * Images were gotten from undraw.co
