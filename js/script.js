@@ -174,7 +174,7 @@ $("#login-btn").on("click", function (e) {
         console.log(response);
 
         for (var i = 0; i < response.length; i++) {
-            if(response[i].name.toUpperCase() == name.toUpperCase() && response[i].password == password){
+            if(response[i].nametoUpperCase() == name.toUpperCase() && response[i].password == password){
                 document.getElementById("username-span").innerHTML = name;
                 openBtn.classList.add("login");
                 // alert("Logged in");
@@ -484,7 +484,7 @@ function DinoGame(){
 // End of Dino Game Code
 
 //Start of Breakout Code
-const breakout = '<div id="game-container"></div>';
+const breakout = '<div id="game-container"><h1>Tic Tac Toe</h1><br></div>';
 
 function Breakout(){
     let ball;
