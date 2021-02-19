@@ -25,11 +25,33 @@
 * Achievements - similar to Kongregate; users can play games to earn achievements and level up their account to unlock rewards
 * Full mobile responsiveness - allow users to fully play on the website on mobile devices (currently not)
 
+## Games Included 
+
+### TicTacToe
+* Tic-tac-toe, noughts and crosses, or Xs and Os/“X’y O’sies”, is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner ("Tic-tac-toe", n.d.)
+  * Source of code **[https://github.com/BornaSepic/Tic-Tac-Toe]**
+
+### Circle Click Game
+* Circle Click, a game where user click on different sizes circle with different score according to the size of the circle, within 30 seconds. Eg. the smaller the circle, the higher the score
+  * Source of code **[https://github.com/robwhitaker/Circle-Game]**
+
+### Dino Game
+* Dino Game, also known as T-Rex Game and Dino Runner, a replica of the in-built browser game in google chrome. It is being played by pressing the space bar for the dino to jump over the obstacles.
+  * Source of code **[https://www.youtube.com/watch?v=i7nIutSLvdU]**
+  
+### Dino Game
+* Breakout, an arcade game where player knocks down as many bricks as possible with the ball by using the paddle and wall. If the player's paddle misses the ball's rebound, they will lose a live. ("Breakout (video game)", n.d.)
+  * Source of code **[https://github.com/flowforfrank/breakout]**
+  
+### Flappy Bird
+* Flappy Bird is an arcade-style game in which the player controls the bird, which moves persistently to the right. The player is tasked with navigating it through pairs of pipes that have equally sized gaps placed at random heights. Faby automatically descends and only ascends when the player press the Fly button.Colliding with a pipe ends the gameplay. ("Flappy Bird", n.d.)
+  * Source of code **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity]**
+
 ## Technologies used 
 
 ### This project uses
 
-* ajax for account management / leaderboards
+* Restdb.io for account management / leaderboards
 * localstorage for quiz leaderboard
 
 ## Testing
@@ -64,9 +86,15 @@
  (This quiz does not link to the main pages account since this is a small game that has only a fixed number of questions)
  
 ## Credits 
+
+### Source of code
+* **[https://github.com/BornaSepic/Tic-Tac-Toe]**
+* **[https://github.com/robwhitaker/Circle-Game]**
+* **[https://www.youtube.com/watch?v=i7nIutSLvdU]**
+* **[https://github.com/flowforfrank/breakout]**
+* **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity]**
  
 ### Media
- 
  * Images were gotten from undraw.co
 
 ### Acknowledgments
@@ -82,4 +110,4 @@
 * Marcus
   * API development 
   * Account management, leaderboard database from restdb.io
-  * Javascript for other games
+  * Javascript for mini games (TicTacToe, Circle Click, Dino Game, Breakout, Flappy Bird)
