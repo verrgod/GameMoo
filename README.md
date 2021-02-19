@@ -1,5 +1,8 @@
 # ID-Assignment-3
 
+## Website Link
+ **[GameMOO](https://github.io/verrgod/ID-Assignment-3)**
+
 ![GameMoo Logo](img/logo.png)
 
 ### GameMoo is a minigame website; a place for users to play games and to show the world their skills by setting highscores on minigames. Users can create an acconut and save their scores on the leaderboards. GameMoo uses restdb.io for keeping track of account details, leaderboards and localstorage for the quiz leaderboard.
@@ -29,23 +32,23 @@
 
 ### TicTacToe
 * Tic-tac-toe, noughts and crosses, or Xs and Os/“X’y O’sies”, is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner ("Tic-tac-toe", n.d.)
-  * Source of code **[https://github.com/BornaSepic/Tic-Tac-Toe]**
+  * Source of code **[https://github.com/BornaSepic/Tic-Tac-Toe](https://github.com/BornaSepic/Tic-Tac-Toe)**
 
 ### Circle Click Game
 * Circle Click, a game where user click on different sizes circle with different score according to the size of the circle, within 30 seconds. Eg. the smaller the circle, the higher the score
-  * Source of code **[https://github.com/robwhitaker/Circle-Game]**
+  * Source of code **[https://github.com/robwhitaker/Circle-Game](https://github.com/robwhitaker/Circle-Game)**
 
 ### Dino Game
 * Dino Game, also known as T-Rex Game and Dino Runner, a replica of the in-built browser game in google chrome. It is being played by pressing the space bar for the dino to jump over the obstacles.
-  * Source of code **[https://www.youtube.com/watch?v=i7nIutSLvdU]**
+  * Source of code **[https://www.youtube.com/watch?v=i7nIutSLvdU](https://www.youtube.com/watch?v=i7nIutSLvdU)**
   
 ### Dino Game
 * Breakout, an arcade game where player knocks down as many bricks as possible with the ball by using the paddle and wall. If the player's paddle misses the ball's rebound, they will lose a live. ("Breakout (video game)", n.d.)
-  * Source of code **[https://github.com/flowforfrank/breakout]**
+  * Source of code **[https://github.com/flowforfrank/breakout](https://github.com/flowforfrank/breakout)**
   
 ### Flappy Bird
 * Flappy Bird is an arcade-style game in which the player controls the bird, which moves persistently to the right. The player is tasked with navigating it through pairs of pipes that have equally sized gaps placed at random heights. Faby automatically descends and only ascends when the player press the Fly button.Colliding with a pipe ends the gameplay. ("Flappy Bird", n.d.)
-  * Source of code **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity]**
+  * Source of code **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity](https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity)**
 
 ## Technologies used 
 
@@ -88,18 +91,19 @@
 ## Credits 
 
 ### Source of code
-* **[https://github.com/BornaSepic/Tic-Tac-Toe]**
-* **[https://github.com/robwhitaker/Circle-Game]**
-* **[https://www.youtube.com/watch?v=i7nIutSLvdU]**
-* **[https://github.com/flowforfrank/breakout]**
-* **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity]**
+* **[https://github.com/BornaSepic/Tic-Tac-Toe](https://github.com/BornaSepic/Tic-Tac-Toe)**
+* **[https://github.com/robwhitaker/Circle-Game](https://github.com/robwhitaker/Circle-Game)**
+* **[https://www.youtube.com/watch?v=i7nIutSLvdU](https://www.youtube.com/watch?v=i7nIutSLvdU)**
+* **[https://github.com/flowforfrank/breakout](https://github.com/flowforfrank/breakout)**
+* **[https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity](https://www.w3schools.com/graphics/tryit.asp?filename=trygame_default_gravity)**
  
 ### Media
  * Images were gotten from undraw.co
+ * Images were gotten from Google image
 
 ### Acknowledgments
- 
- * I (Vernon) received inspiration for this project from Brain Design
+ * I (Vernon) received inspiration for this project from Brian Design
+ * I (Marcus) received inspiration for this project from **[Y8 Games](https://www.y8.com/)**
  
 ### Contribution
  
