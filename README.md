@@ -3,7 +3,7 @@
 ## Website Link
  **[GameMOO](https://github.io/verrgod/ID-Assignment-3)**
 
-![GameMoo Logo](img/logo.png)
+![GameMoo Logo](img/Logo.png)
 
 ### GameMoo is a minigame website; a place for users to play games and to show the world their skills by setting highscores on minigames. Users can create an acconut and save their scores on the leaderboards. GameMoo uses restdb.io for keeping track of account details, leaderboards and localstorage for the quiz leaderboard.
 
