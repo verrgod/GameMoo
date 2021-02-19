@@ -1,7 +1,7 @@
 # ID-Assignment-3
 
 ## Website Link
- **[GameMOO](https://github.io/verrgod/ID-Assignment-3)**
+ **[GameMOO](https://verrgod.github.io/ID-Assignment-3/)**
 
 ![GameMoo Logo](img/Logo.png)
 
